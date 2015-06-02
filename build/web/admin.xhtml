@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>ScamPeace</title>
+    </h:head>
+    <h:body>
+        <h:form id="f1" >
+        <p:dataScroller value="#{profMB.gamesden}" var="scam" chunkSize="10" id="dench">
+        <f:facet name="header">
+            <h:panelGrid columns="2" style="width:100%"  >
+                <h:panelGrid columns="2" >
+                    <p:commandButton value="Create Game" oncomplete="PF('dialog1').show()"/>
+            <p:commandButton ajax="false" value="Print All ScamGames" actionListener="#{reportMB.gassPDF}"/>
+            </h:panelGrid>
+            <h:outputText value="Balance: #{profMB.user.money}" id="output"   />
+            </h:panelGrid>
+            
+        </f:facet>
+ 
+       <br/> <h:panelGrid columns="5" style="width:20%" columnClasses="logo,detail">
+            <p:outputPanel >
+                 <h:outputText value="ScamGame:" /><br/>
+                <h:outputText value="#{scam.gamename}" style="font-weight: bold; zoom: 2" />
+            </p:outputPanel>
+            
+            <p:outputPanel>
+                <h:panelGrid columns="3" >
+                    <h:outputText value="Jackpot:" />
+                    <h:outputText value="#{scam.jackpot}" style="font-weight: bold"/>
+                        <br/><br/>
+                    <h:outputText value="Players:" />
+                    <h:outputText value="#{scam.players}" style="font-weight: bold"/>
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid><br/>
+    </p:dataScroller>
+        
+
+        </h:form>
+        
+        <h:form id="f2">
+            <p:dialog id="dialog1" widgetVar="dialog1" modal="true">
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Name of the Game"/>
+                    <p:inputText value="#{profMB.game.gamename}"/>
+                    <h:outputLabel value="Golden Nubmer"/>
+                    <p:inputText value="#{profMB.game.winumber}"/>
+                    <h:outputLabel value="Jackpot"/>
+                    <p:inputText value="#{profMB.game.jackpot}"/>
+                </h:panelGrid>
+                <p:commandButton ajax="false" value="Create ScamGame" actionListener="#{profMB.createGame}" oncomplete="PF('dialog1').hide()" update=":f1:dench"/>
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>
+

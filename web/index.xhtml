@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <title>ScamPeace</title>
+        </h:head>
+
+        <h:body>
+            <h:form id="form01">
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Username"/>
+            <p:inputText value="#{loginMBB.login}" required="true" requiredMessage="Enter username"/>
+            
+            <h:outputLabel value="Password"/>
+            <p:password value="#{loginMBB.password}" required="true" requiredMessage="Enter password"/>
+        </h:panelGrid><br />
+        <p:commandButton ajax="falce" value="Sign in" action="#{loginMBB.logina()}"/>
+        <p:commandButton value="Registration" oncomplete="PF('dlg01').show()"/>
+        </h:form>
+
+        <h:form id="form02">
+            <p:dialog id="dlg01" widgetVar="dlg01" modal="true">
+                 
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Name"/>
+                    <p:inputText value="#{loginMBB.log.firstname}"/>
+                    <h:outputLabel value="Surname"/>
+                    <p:inputText value="#{loginMBB.log.lastname}"/>
+                    <h:outputLabel value="Login"/>
+                    <p:inputText value="#{loginMBB.log.login}"/>
+                    <h:outputLabel value="Password"/>
+                    <p:inputText value="#{loginMBB.log.password}"/>
+                    <h:outputLabel value="Age"/>
+                    <p:inputText value="#{loginMBB.log.age}"/>
+                    <h:outputLabel value="WebMoney Purse"/>
+                    <p:inputText value="#{loginMBB.log.wm}"/>
+                    <h:outputLabel value="Amount USD"/>
+                    <p:inputText value="#{loginMBB.log.money}"/>
+                </h:panelGrid>
+                <p:commandButton value="Add" action="#{loginMBB.loginb()}" oncomplete="PF('dlg01').hide()"/>
+            </p:dialog>
+        </h:form>
+
+        </h:body>
+
+    </f:view>
+</html>
+
